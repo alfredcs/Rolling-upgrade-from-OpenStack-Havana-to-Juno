@@ -186,4 +186,3 @@ mysql> show columns from trust;
 +-----------------+-------------+------+-----+---------+-------+ 
 
 We need to find the correct traits to give this column as well.  We already add several columns earlier in the patch. 
-
