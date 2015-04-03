@@ -2,6 +2,8 @@ Armed with high-availability, rolling upgrade of a running OpenStack becomes pos
 
 Since there are data modeling changes from Havana to Juno, careful MySql database backup is required. It's recommended not to conduct changes during the upgrade.
 
+Followings are the steps to upgrade Keystone from havana 2013.3.2 to 2014.2.2, Juno stable code revision. Oslo dependencies and MySQL data model changes were some of the top chanllenges however issues are mitigable with careful plannings.  
+
 Upgrade steps:
 
 
