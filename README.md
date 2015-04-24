@@ -155,11 +155,11 @@ Upgrade steps:
 
 Patch Issues
  
-Issue: Keystone trust table column missing
-(when running keystone --insecure user-role-remove <>)
-[root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
-[root@ha-controller1 patches]# kk user-role-add --user wpc-ci-user1 --tenant contrail --role admin
-[root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
+    Issue: Keystone trust table column missing
+    (when running keystone --insecure user-role-remove <>)
+    [root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
+    [root@ha-controller1 patches]# kk user-role-add --user wpc-ci-user1 --tenant contrail --role admin
+    [root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
     +----------------------------------+-------+--------------+----------------------------------+
     |                id                |  name |   user_id    |            tenant_id             |
     +----------------------------------+-------+--------------+----------------------------------+
