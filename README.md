@@ -160,32 +160,32 @@ Issue: Keystone trust table column missing
 [root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
 [root@ha-controller1 patches]# kk user-role-add --user wpc-ci-user1 --tenant contrail --role admin
 [root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
-+----------------------------------+-------+--------------+----------------------------------+
-|                id                |  name |   user_id    |            tenant_id             |
-+----------------------------------+-------+--------------+----------------------------------+
-| edecdf6d9f434a159a46ab6ed4a06955 | admin | wpc-ci-user1 | 961b69b53004430781a0eaf6d498739b |
-+----------------------------------+-------+--------------+----------------------------------+
-[root@ha-controller1 patches]# kk user-role-remove --user wpc-ci-user1 --tenant contrail --role admin
-An unexpected error prevented the server from fulfilling your request. (HTTP 500)
-[root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
+    +----------------------------------+-------+--------------+----------------------------------+
+    |                id                |  name |   user_id    |            tenant_id             |
+    +----------------------------------+-------+--------------+----------------------------------+
+    | edecdf6d9f434a159a46ab6ed4a06955 | admin | wpc-ci-user1 | 961b69b53004430781a0eaf6d498739b |
+    +----------------------------------+-------+--------------+----------------------------------+
+    [root@ha-controller1 patches]# kk user-role-remove --user wpc-ci-user1 --tenant contrail --role admin
+    An unexpected error prevented the server from fulfilling your request. (HTTP 500)
+    [root@ha-controller1 patches]# kk user-role-list --user wpc-ci-user1
 
  
 
-2015-03-19 20:14:47.029 6416 TRACE keystone.common.wsgi OperationalError: (OperationalError) (1054, "Unknown column 'trust.remaining_uses' in 'field list'") 'SELECT trust.id AS trust_id, trust.trustor_user_id AS trust_trustor_user_id, trust.trustee_user_id AS trust_trustee_user_id, trust.project_id AS trust_project_id, trust.impersonation AS trust_impersonation, trust.deleted_at AS trust_deleted_at, trust.expires_at AS trust_expires_at, trust.remaining_uses AS trust_remaining_uses, trust.extra AS trust_extra \nFROM trust \nWHERE trust.deleted_at IS NULL AND trust.trustee_user_id = %s' ('wpc-ci-user1',)
-Current trust table
-mysql> show columns from trust;
+    2015-03-19 20:14:47.029 6416 TRACE keystone.common.wsgi OperationalError: (OperationalError) (1054, "Unknown column 'trust.remaining_uses' in 'field list'") 'SELECT trust.id AS trust_id, trust.trustor_user_id AS trust_trustor_user_id, trust.trustee_user_id AS trust_trustee_user_id, trust.project_id AS trust_project_id, trust.impersonation AS trust_impersonation, trust.deleted_at AS trust_deleted_at, trust.expires_at AS trust_expires_at, trust.remaining_uses AS trust_remaining_uses, trust.extra AS trust_extra \nFROM trust \nWHERE trust.deleted_at IS NULL AND trust.trustee_user_id = %s' ('wpc-ci-user1',)
+    Current trust table
+    mysql> show columns from trust;
 
-+-----------------+-------------+------+-----+---------+-------+
-| Field           | Type        | Null | Key | Default | Extra |
-+-----------------+-------------+------+-----+---------+-------+
-| id              | varchar(64) | NO   | PRI | NULL    |       |
-| trustor_user_id | varchar(64) | NO   |     | NULL    |       |
-| trustee_user_id | varchar(64) | NO   |     | NULL    |       |
-| project_id      | varchar(64) | YES  |     | NULL    |       |
-| impersonation   | tinyint(1)  | NO   |     | NULL    |       |
-| deleted_at      | datetime    | YES  |     | NULL    |       |
-| expires_at      | datetime    | YES  |     | NULL    |       |
-| extra           | text        | YES  |     | NULL    |       |
-+-----------------+-------------+------+-----+---------+-------+
+    +-----------------+-------------+------+-----+---------+-------+
+    | Field           | Type        | Null | Key | Default | Extra |
+    +-----------------+-------------+------+-----+---------+-------+
+    | id              | varchar(64) | NO   | PRI | NULL    |       |
+    | trustor_user_id | varchar(64) | NO   |     | NULL    |       |
+    | trustee_user_id | varchar(64) | NO   |     | NULL    |       |
+    | project_id      | varchar(64) | YES  |     | NULL    |       |
+    | impersonation   | tinyint(1)  | NO   |     | NULL    |       |
+    | deleted_at      | datetime    | YES  |     | NULL    |       |
+    | expires_at      | datetime    | YES  |     | NULL    |       |
+    | extra           | text        | YES  |     | NULL    |       |
+    +-----------------+-------------+------+-----+---------+-------+
 
-We need to find the correct traits to give this column as well.  We already add several columns earlier in the patch. 
+    We need to find the correct traits to give this column as well.  We already add several columns earlier in the patch. 
